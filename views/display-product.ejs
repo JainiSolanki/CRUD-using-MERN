@@ -1,0 +1,22 @@
+
+<table border="1">
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Details</th>
+    <th>Price</th>
+    <th>Actions</th>
+  </tr>
+  <% for(var i = 0; i < mydata.length; i++) { %>
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><%= mydata[i].pname %></td>
+      <td><%= mydata[i].pdetails %></td>
+      <td><%= mydata[i].pprice %></td>
+      <td>
+        <a href="/edit-product/<%= mydata[i]._id %>">Edit</a>
+        <a href="/delete-product/<%= mydata[i]._id %>">Delete</a>
+      </td>
+    </tr>
+  <% } %>
+</table>
