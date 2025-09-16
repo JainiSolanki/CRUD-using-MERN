@@ -6,6 +6,7 @@ var logger = require('morgan');
 const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+const fileUpload = require('express-fileupload');
 //connection of mongo db
 mongoose.connect("mongodb://127.0.0.1:27017/practice")
 .then(()=> {
@@ -23,6 +24,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(fileUpload());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

@@ -7,6 +7,20 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+//File upload
+router.get('/fileupload', function(req, res, next) {
+  res.render('fileupload-form');
+});
+
+router.post('/fileupload', function(req, res, next) {
+  console.log(req.files.files123);
+  var myFile = req.files.files123
+  myFile.mv('public/uploads/'+myFile.name, function(err) {
+    res.send("Done")
+  })
+  //res.render('index', { title: 'Express' });
+});
+
 router.get('/add-product', function(req, res, next) {
   res.render('add-product')
 });
