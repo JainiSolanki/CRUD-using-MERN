@@ -21,6 +21,35 @@ router.post('/fileupload', function(req, res, next) {
   //res.render('index', { title: 'Express' });
 });
 
+//login
+router.get('/login', function(req, res, next) {
+  res.render('login')
+});
+
+router.post('/login', function(req, res, next) {
+  var a = req.body.txt1
+  req.session.uname = a
+  res.redirect('/dashboard')
+  //res.render('login')
+});
+
+router.get('/dashboard', function(req, res, next) {
+  if(req.session.uname) {
+    var a = req.session.uname
+    res.render('dashboard', {mya : a})
+  }
+  else {
+    res.redirect('/login')
+  }
+});
+
+//logout
+router.get('/logout', function(req, res, next) {
+  req.session.destroy(function(err){
+    res.redirect('/login');
+  });
+});
+
 router.get('/add-product', function(req, res, next) {
   res.render('add-product')
 });

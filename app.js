@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const fileUpload = require('express-fileupload');
+const session = require('express-session');
 //connection of mongo db
 mongoose.connect("mongodb://127.0.0.1:27017/practice")
 .then(()=> {
@@ -20,6 +21,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(session({secret: 'jaini solanki', cookie: {maxAge: 60000}}))  //in ms(60000)
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
