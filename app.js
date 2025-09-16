@@ -26,7 +26,10 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(fileUpload());
+app.use(fileUpload({
+  limits: { fileSize: 2 * 1024 * 1024 },
+  abortOnLimit: true
+}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);

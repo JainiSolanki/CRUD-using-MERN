@@ -16,8 +16,11 @@ router.post('/fileupload', function(req, res, next) {
   console.log(req.files.files123);
   var myFile = req.files.files123
   myFile.mv('public/uploads/'+myFile.name, function(err) {
-    res.send("Done")
-  })
+    if(err) {
+      return res.status(500).send(err);
+    }
+    res.send("File Uploaded");
+  });
   //res.render('index', { title: 'Express' });
 });
 
